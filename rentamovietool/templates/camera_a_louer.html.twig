@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Caméras disponibles{% endblock %}
+
+{% block body %}
+    <div id="home">
+        <div class="header-blue">
+            <nav class="navbar navbar-dark navbar-expand-md sticker" style="padding-top:30px;">
+                <div class="container"><a class="navbar-brand" style="font-size:24px;" href="#">RENTACAM</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div
+                            class="collapse navbar-collapse" id="navcol-1">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item" role="presentation"><a class="nav-link " href="{{ path('accueil') }}" target="_top">Bienvenue</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="{{ path('location') }}">Caméras à louer</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link " href="">Les loueurs</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link " href="">Mettre une caméra en location </a></li>
+                            <li class="nav-item" role="presentation"></li>
+                            <li class="nav-item" role="presentation"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="features-boxed">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">CAMERAS A LOUER</h2>
+                <p class="text-center">Les caméras du moment</p>
+            </div>
+            <div class="row justify-content-center features">
+             {#   {% for camera in cameras %}
+                    <div class="col-sm-6 col-md-5 col-lg-4 item">
+                        <div class="box"><i class="fa fa-video-camera icon"></i>
+                            <h3 class="name">{{ camera.Brand }}</h3>
+                            <p class="description">
+                                {{ camera.Prix }} <span>€/jour</span>
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+                #}
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box"><i class="fa fa-video-camera icon"></i>
+                        <h3 class="name">Marque de la caméra</h3>
+                        <p class="description">
+                            100<span>€/jour</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

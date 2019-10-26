@@ -1,16 +1,18 @@
 <?php
 
 namespace App\Controller;
+
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class homeController extends AbstractController
+class CameraALouer extends AbstractController
 {
     /**
-     * @Route("/", name="accueil")
+     * @Route("/Camera_a_louer", name="location")
      */
-    public function home(){
-        return $this->render('accueil.html.twig');
+    public function cameraALouer(){
+        return $this->render('camera_a_louer.html.twig');
     }
 }
