@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>{% block title %}RENTACAM{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="/fonts/ionicons.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+        <link rel="stylesheet" href="/css/Features-Boxed.css">
+        <link rel="stylesheet" href="/css/Footer-Dark.css">
+        <link rel="stylesheet" href="/css/Header-Blue--Sticky-Header--Smooth-Scroll.css">
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/Team-Boxed.css">
+    {% endblock %}
+</head>
+<body>
+
+{% block flash_messages %}
+    {% for message in app.flashes('notice') %}
+        <div class="col-12 col-lg-6 col-xl-6 offset-xl-1">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
+    <script src="/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
+{% endblock %}
+</body>
+</html>

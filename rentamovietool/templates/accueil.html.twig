@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue!{% endblock %}
+
+{% block body %}
+    <div id="home">
+        <div class="header-blue">
+            <nav class="navbar navbar-dark navbar-expand-md sticker" style="padding-top:30px;">
+                <div class="container"><a class="navbar-brand" style="font-size:24px;" href="#">RENTACAM</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div
+                            class="collapse navbar-collapse" id="navcol-1">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="{{ path('accueil') }}" target="_top">Bienvenue</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link " href="">Caméras à louer</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link " href="">Les loueurs</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link " href="">Mettre une caméra en location </a></li>
+                            <li class="nav-item" role="presentation"></li>
+                            <li class="nav-item" role="presentation"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container hero">
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-xl-6 offset-xl-1" style="margin-left:44px;">
+                        <h1 style="margin-top:204px;">La révolution de vos tournages</h1>
+                        <p>Vous allez pouvoir louer la caméra de votre choix à un particulier avec entre vous un contrat d'assurance.</p><button class="btn btn-light btn-lg action-button" style="padding-right:20px;padding-left:20px;padding-bottom:6px;padding-top:6px;font-size:16px;"
+                                                                                                                                                 hover="background: #fff; color: #333;" type="button">En savoir plus</button></div>
+                    <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder"><img src="/img/VIPER_THOMSON.png">
+                        <div class="iphone-mockup">
+                            <div class="screen"><img style="width:261px;" src="/img/VIPER_THOMSON.png"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Collaborer avec nous</a></li>
+                            <li><a href="#">Cookies</a></li>
+                            <li><a href="#">Mentions légales</a></li>
+                            <li><a href="#">Se connecter</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>A propos</h3>
+                        <ul>
+                            <li><a href="#">La société</a></li>
+                            <li><a href="#">La team</a></li>
+                            <li><a href="#">Nous rejoindre</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>RENTACAM</h3>
+                        <p>Service de mise en relation de particuliers pour des fins de location de matériel cinématographique avec assurance.</p>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                </div>
+                <p class="copyright">RENTACAM © 2020</p>
+            </div>
+        </footer>
+    </div>
+{% endblock %}
