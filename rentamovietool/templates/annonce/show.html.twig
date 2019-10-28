@@ -1,0 +1,28 @@
+{% extends'base.html.twig' %}
+
+{% block title %} {{ annonce.Marque }} {{ annonce.modele }} {% endblock %}
+
+{% block body %}
+
+    <div class="features-boxed">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">{{ annonce.Marque }} </h2>
+                <p class="text-center">{{ annonce.modele }}</p>
+            </div>
+            <div class="row justify-content-center features">
+
+                    <div class="col-sm-6 col-md-5 col-lg-4 item">
+                        <div class="box">{# <i class="fa fa-video-camera icon"></i>#}
+                            <img style="max-width: 10em; max-height: 15em" src="{{ annonce.image }}" alt="">
+                            <p class="description">{{ annonce.description }}</p>
+                            <p class="description">
+                                {{ annonce.prix }} <span>€/jour</span>
+                            </p>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
