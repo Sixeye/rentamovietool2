@@ -1,0 +1,9 @@
+{% block flash_messages %}
+    {% for label, messages in app.flashes %}
+        <div class="col-12 col-lg-6 col-xl-6 offset-xl-1 mt-2 alert alert-{{ label }}">
+            {% for message in messages %}
+                <p>{{ message | raw}}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}
