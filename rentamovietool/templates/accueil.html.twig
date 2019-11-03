@@ -13,7 +13,14 @@
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="{{ path('accueil') }}" target="_top">Bienvenue</a></li>
                             <li class="nav-item" role="presentation"><a class="nav-link " href="{{ path('location') }}">Caméras à louer</a></li>
                             <li class="nav-item" role="presentation"><a class="nav-link " href="">Les loueurs</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link " href="{{ path('annonce_nouveau') }}">Mettre une caméra en location </a></li>
+                            {% if app.user %}
+                                <li class="nav-item" role="presentation"><a class="nav-link " href="{{ path('annonce_nouveau') }}">Mettre une caméra en location </a></li>
+                                <li class="nav-item" role="presentation"><a href="{{ path('account_profile') }}" class="nav-link">Modifier mon profil</a></li>
+                                <li class="nav-item" role="presentation"><a href="{{ path('account_logout') }}" class="nav-link">Deconnexion</a></li>
+                            {% else %}
+                                <li class="nav-item" role="presentation"><a href="{{ path('account_register') }}" class="nav-link">S'inscrire</a></li>
+                                <li class="nav-item" role="presentation"><a href="{{ path('account_login') }}" class="nav-link">Connexion</a></li>
+                            {% endif %}
                             <li class="nav-item" role="presentation"></li>
                             <li class="nav-item" role="presentation"></li>
                         </ul>

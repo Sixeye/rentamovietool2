@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CameraRepository")
@@ -44,14 +45,15 @@ class Camera
     private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Loueur", inversedBy="camera")
-     */
-    private $loueur;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Loueur", inversedBy="cameras")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $loueur;
 
     /**
      * Permet d'initialiser le slug
@@ -63,7 +65,7 @@ class Camera
     public function initialazeSlug(){
         if(empty($this->slug)){
             $slugify = new Slugify();
-            $this->slug = $slugify->slugify($this->Marque);
+            $this->slug = $slugify->slugify($this->getModele(). ' ' .$this->getId());
         }
     }
 

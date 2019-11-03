@@ -2,14 +2,24 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LoueurRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="Un autre utilisateur est déjà inscrit avec cet e-mail. Veuillez modifier l'e-mail."
+ * )
  */
-class Loueur
+class Loueur implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -20,31 +30,37 @@ class Loueur
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $Nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $Prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $ville;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $code_postal;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $email;
 
@@ -54,13 +70,48 @@ class Loueur
     private $telephone;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Camera", mappedBy="loueur")
+     * @ORM\Column(type="string", length=255)
      */
-    private $camera;
+    private $hash;
+
+    /**
+     * @Assert\EqualTo(propertyPath="hash", message="Les mots de passe renseignés ne sont pas identiques.")
+     */
+    public $passwordConfirm;
+
+    /**é
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $presentation;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * Permet d'initialiser le slug
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function initialazeSlug(){
+        if(empty($this->slug)){
+            $slugify = new Slugify();
+            $this->slug = $slugify->slugify($this->getNom(). ' ' .$this->getPrenom());
+        }
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Camera", mappedBy="loueur", orphanRemoval=true)
+     */
+    private $cameras;
 
     public function __construct()
     {
         $this->camera = new ArrayCollection();
+        $this->cameras = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -181,5 +232,74 @@ class Loueur
         }
 
         return $this;
+    }
+
+    public function getHash(): ?string
+    {
+        return $this->hash;
+    }
+
+    public function setHash(string $hash): self
+    {
+        $this->hash = $hash;
+
+        return $this;
+    }
+
+    public function getPresentation(): ?string
+    {
+        return $this->presentation;
+    }
+
+    public function setPresentation(?string $presentation): self
+    {
+        $this->presentation = $presentation;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Camera[]
+     */
+    public function getCameras(): Collection
+    {
+        return $this->cameras;
+    }
+
+    public function getRoles()
+    {
+        return['ROLE_USER'];
+    }
+
+    public function getPassword()
+    {
+        return $this->hash;
+    }
+
+    public function getSalt()
+    {
+
+    }
+
+    public function getUsername()
+    {
+        return $this->getEmail();
+    }
+
+    public function eraseCredentials()
+    {
+
     }
 }
